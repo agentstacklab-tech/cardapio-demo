@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hanks Burger – Cardápio</title>
+<meta name="description" content="Cardápio do Espetão Paulista, Rua Brusque 486, Itajaí/SC. Marmitas de segunda a sexta, assados no fim de semana. Peça pelo WhatsApp.">
+<meta name="theme-color" content="#9B1C1C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#111111; --on-primary:#fff; --bg:#fbf5f2; --card:#fffdfc; --text:#2a1512;
+  --muted:#6b5550; --line:#ecd9d3; --chip:#f6e3dd; --stripe:#F2B705; --wa:#25D366; --on-wa:#06220f;
+  --radius:18px; --shadow:0 1px 0 rgba(42,23,16,.06),0 8px 20px -12px rgba(42,23,16,.25);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --primary:#ff8a80; --on-primary:#2a0a08; --bg:#170f0e; --card:#211615; --text:#f7ebe8;
+    --muted:#bfa9a4; --line:#3d2b28; --chip:#2e201e; --stripe:#4a2a24;
+    --shadow:0 8px 20px -12px rgba(0,0,0,.7);
+  }
+}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Bricolage Grotesque',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.45;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+.toldo{height:16px;background:repeating-linear-gradient(90deg,var(--primary) 0 28px,var(--stripe) 28px 56px)}
+header{padding:22px 0 20px}
+.brand{display:flex;align-items:center;gap:14px}
+header .logo{flex:none;width:64px;height:64px;border-radius:50%;background:var(--primary);display:grid;place-items:center;font-size:2rem;line-height:1;box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--primary)}
+header .logo img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+header h1{font-size:2.1rem;font-weight:800;letter-spacing:-.03em;line-height:1}
+header p{font-size:1rem;color:var(--muted);margin-top:14px;max-width:34ch}
+.info{display:flex;flex-direction:column;gap:2px;margin:16px 0;padding:10px 0;border-block:1px dashed var(--line);font-size:.9rem}
+.taxa{display:inline-block;margin:0 0 12px;padding:6px 14px;border-radius:999px;background:var(--primary);color:var(--on-primary);font-weight:800;font-size:.95rem}
+.why{list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:2px;font-size:.95rem;font-weight:600}
+.why li{display:flex;gap:8px;align-items:center;min-height:28px}
+.why li::before{content:"✓";color:var(--primary);font-weight:800}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;min-width:44px;padding:0 18px;border:0;border-radius:999px;font:600 .95rem 'Bricolage Grotesque',sans-serif;cursor:pointer;text-decoration:none;transition:transform .1s,filter .15s}
+.btn:active{transform:scale(.97)}
+.btn:hover{filter:brightness(1.06)}
+.btn:focus-visible,.tab:focus-visible,input:focus-visible{outline:3px solid var(--text);outline-offset:2px}
+.btn svg{width:20px;height:20px;fill:currentColor;flex:none}
+.btn-wa{background:var(--wa);color:var(--on-wa)}
+.btn-order{background:var(--text);color:var(--bg)}
+.tools{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 0;border-bottom:1px solid var(--line)}
+.search{width:100%;min-height:48px;padding:0 18px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);font:400 1rem 'Bricolage Grotesque',sans-serif}
+.search:focus{border-color:var(--primary)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:8px 0 0;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;min-height:44px;padding:0 14px;border:0;border-bottom:3px solid transparent;background:none;color:var(--muted);font:500 .95rem 'Bricolage Grotesque',sans-serif;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--primary);border-bottom-color:var(--primary);font-weight:800}
+.aviso{font-size:.78rem;color:var(--muted);text-align:center;margin-top:14px}
+main{padding-bottom:40px}
+section{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:4px 16px;box-shadow:var(--shadow)}
+section.destaque{border:2px solid var(--primary)}
+section h2{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;padding:14px 0 6px;display:flex;align-items:center;gap:8px}
+.cat-img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none}
+.sub{font-size:.85rem;color:var(--muted);padding-bottom:6px}
+.sub small{text-transform:none;font-size:inherit}
+.item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px dashed var(--line)}
+section h2+.item,.sub+.item{border-top:0}
+.thumb{flex:none;width:72px;height:72px;border-radius:12px;background:var(--chip);display:grid;place-items:center;font-size:2rem;object-fit:cover}
+.body{flex:1;min-width:0}
+.body h3{font-size:1.05rem;font-weight:600;line-height:1.25}
+.body p{font-size:.88rem;color:var(--muted);margin:2px 0 10px;max-width:46ch}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.price{font-weight:800;font-size:1.3rem;letter-spacing:-.02em;color:var(--primary);font-variant-numeric:tabular-nums}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+footer{text-align:center;font-size:.8rem;color:var(--muted);padding:22px 16px 90px}
+.fab{position:fixed;right:16px;bottom:16px;box-shadow:0 6px 18px rgba(0,0,0,.3);z-index:9;min-height:52px;padding:0 20px}
+@media (min-width:600px){.info{flex-direction:row;gap:18px;flex-wrap:wrap}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="toldo" aria-hidden="true"></div>
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo" aria-hidden="true" id="logo"></div>
+      <h1 id="nome"></h1>
+    </div>
+    <p id="slogan"></p>
+    <div class="info">
+      <span id="horario"></span>
+      <span id="endereco"></span>
+      <span id="fixo"></span>
+    </div>
+    <p class="taxa">Pedido direto, sem taxa de app</p>
+    <ul class="why" aria-label="Por que pedir direto">
+      <li>Hoje o delivery depende do iFood: pedido direto fica sem a comissão do app</li>
+      <li>Cardápio com fotos reais e as promos de segunda a quarta (R$ 19,90) em destaque</li>
+      <li>Pedido chega montado no WhatsApp, sem erro de ponto ou adicional</li>
+    </ul>
+    <a class="btn btn-wa" id="waTopo" target="_blank" rel="noopener" aria-label="Pedir no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm4.800 13.600c-.2.600-1.200 1.100-1.700 1.100-.5.100-1 .2-3.200-.7-2.700-1.100-4.400-3.800-4.500-4-.1-.2-1-1.400-1-2.700s.7-1.900.9-2.200c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 1.900c.1.200.1.300 0 .5l-.4.600c-.1.100-.3.300-.1.600.2.300.8 1.200 1.600 2 1 .9 2 1.200 2.300 1.300.3.100.5.100.6-.1l.9-1c.2-.3.400-.2.600-.1l1.800.9c.3.100.4.200.5.300.1.200.1.700-.1 1.300z"/></svg>Pedir no WhatsApp</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="tools">
+    <input class="search" id="busca" type="search" placeholder="Buscar no cardápio..." aria-label="Buscar item no cardápio" autocomplete="off">
+    <div class="tabs" id="tabs" role="tablist" aria-label="Categorias"></div>
+  </div>
+  <p class="aviso" id="aviso"></p>
+  <main id="menu" aria-live="polite"></main>
+</div>
+
+<footer id="rodape"></footer>
+<a class="btn btn-wa fab" id="waFab" target="_blank" rel="noopener" aria-label="Falar com o Espetão Paulista no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm4.800 13.600c-.2.600-1.200 1.100-1.700 1.100-.5.100-1 .2-3.200-.7-2.700-1.100-4.400-3.800-4.500-4-.1-.2-1-1.400-1-2.700s.7-1.900.9-2.200c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 1.900c.1.200.1.300 0 .5l-.4.600c-.1.100-.3.300-.1.600.2.300.8 1.200 1.600 2 1 .9 2 1.200 2.300 1.300.3.100.5.100.6-.1l.9-1c.2-.3.400-.2.600-.1l1.800.9c.3.100.4.200.5.300.1.200.1.700-.1 1.300z"/></svg>WhatsApp</a>
+
+<script>
+// ===== EDITE AQUI: todo o conteúdo do cliente =====
+// fotos: colocar em ./img/ e preencher img: "img/nome.jpg"  (vale para item e para categoria; opcional)
+const CARDAPIO = {
+  "nome": "Hanks Burger",
+  "logo": "🍔",
+  "logoImg": "img/logo.jpg",
+  "slogan": "Damn good burgers — todos os dias, 18h às 23h30",
+  "horario": "🕒 Todos os dias · 18h às 23h30",
+  "endereco": "📍 Rua Lauro Müller, 463 – Itajaí/SC",
+  "fixo": "📷 @hanksburger",
+  "whatsapp": "5547984040826",
+  "aviso": "Valores de exemplo — ajustamos com Hanks antes de publicar.",
+  "msgGeral": "Olá, Hanks! Vi o cardápio digital e gostaria de fazer um pedido.",
+  "msgItem": "Olá, Hanks! Quero pedir: {item} ({preco}). Entrega ou retirada na Rua Lauro Müller?",
+  "rodape": "Cardápio digital feito para Hanks Burger · por Marco (47) 99714-3462",
+  "categorias": [
+    {
+      "nome": "Promo da Semana",
+      "emoji": "🔥",
+      "destaque": true,
+      "img": "img/f2.jpg",
+      "sub": "R$ 19,90 · seg Crispy · ter Salad · qua Quarter · só no balcão, confirme para delivery",
+      "itens": [
+        {
+          "nome": "Quarter",
+          "preco": 19.9,
+          "emoji": "🍔",
+          "img": "img/f3.jpg",
+          "desc": "Dois smashes, queijo, picles, cebola, ketchup e mostarda."
+        },
+        {
+          "nome": "Crispy",
+          "preco": 19.9,
+          "emoji": "🍗",
+          "desc": "Frango crocante no pão, promo de segunda."
+        },
+        {
+          "nome": "Salad",
+          "preco": 19.9,
+          "emoji": "🥬",
+          "desc": "O clássico com salada, promo de terça."
+        }
+      ]
+    },
+    {
+      "nome": "Burgers",
+      "emoji": "🍔",
+      "itens": [
+        {
+          "nome": "Cheeseburger Hanks",
+          "preco": 32,
+          "emoji": "🧀",
+          "img": "img/f4.jpg",
+          "desc": "O cheeseburger que vem de 10 anos de casa."
+        },
+        {
+          "nome": "Hanks Chicken",
+          "preco": 34,
+          "emoji": "🍗",
+          "desc": "Frango empanado crocante."
+        },
+        {
+          "nome": "Motz",
+          "preco": 36,
+          "emoji": "🧀",
+          "desc": "Com mussarela empanada."
+        },
+        {
+          "nome": "Dry Aged Black Angus",
+          "preco": 48,
+          "emoji": "🥩",
+          "img": "img/f1.jpg",
+          "desc": "Brioche de longa fermentação, cebola braseada e queijo suíço."
+        }
+      ]
+    },
+    {
+      "nome": "Entradas e Porções",
+      "emoji": "🍟",
+      "itens": [
+        {
+          "nome": "A Coxinha",
+          "preco": 24,
+          "emoji": "🍗",
+          "img": "img/f5.jpg",
+          "desc": "A coxinha da casa, no salão e no delivery."
+        },
+        {
+          "nome": "Batata frita",
+          "preco": 22,
+          "emoji": "🍟",
+          "desc": "Porção para dividir."
+        },
+        {
+          "nome": "Mil folhas de cupim",
+          "preco": 38,
+          "emoji": "🥩",
+          "desc": "Demiglace, farofa de brioche e vinagrete de manga."
+        }
+      ]
+    },
+    {
+      "nome": "Bebidas",
+      "emoji": "🍺",
+      "itens": [
+        {
+          "nome": "Chopp gelado",
+          "preco": 14,
+          "emoji": "🍺",
+          "desc": "Quinta é dia de roda de chopp."
+        },
+        {
+          "nome": "Spritz",
+          "preco": 28,
+          "emoji": "🍹",
+          "desc": "Aperol, Lillet, Limoncello ou Campari."
+        },
+        {
+          "nome": "Refrigerante lata",
+          "preco": 7,
+          "emoji": "🥤",
+          "desc": "Lata 350ml, bem gelada."
+        }
+      ]
+    }
+  ]
+};
+// ===== fim da área editável =====
+
+const $ = id => document.getElementById(id);
+const brl = n => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+const wa = txt => `https://wa.me/${CARDAPIO.whatsapp}?text=${encodeURIComponent(txt)}`;
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+const esc = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+let cat = "Todos", termo = "";
+
+function renderTopo() {
+  document.title = "Espetão Paulista – Cardápio";
+  if (CARDAPIO.logoImg) { $("logo").innerHTML = "<img src=\"" + CARDAPIO.logoImg + "\" alt=\"\">"; } else { $("logo").textContent = CARDAPIO.logo; }
+  $("nome").textContent = CARDAPIO.nome;
+  $("slogan").textContent = CARDAPIO.slogan;
+  $("horario").textContent = CARDAPIO.horario;
+  $("endereco").textContent = CARDAPIO.endereco;
+  $("fixo").textContent = CARDAPIO.fixo;
+  $("aviso").textContent = CARDAPIO.aviso;
+  $("waTopo").href = $("waFab").href = wa(CARDAPIO.msgGeral);
+  $("rodape").textContent = CARDAPIO.rodape;
+}
+
+function renderTabs() {
+  const nomes = ["Todos", ...CARDAPIO.categorias.map(c => c.nome)];
+  $("tabs").innerHTML = nomes.map(n =>
+    `<button class="tab" role="tab" aria-selected="${n === cat}" data-cat="${esc(n)}">${esc(n)}</button>`).join("");
+}
+
+function renderMenu() {
+  const q = norm(termo.trim());
+  const html = CARDAPIO.categorias
+    .filter(c => cat === "Todos" || c.nome === cat)
+    .map(c => {
+      const itens = c.itens.filter(i => norm(i.nome).includes(q));
+      if (!itens.length) return "";
+      const icone = c.img ? `<img class="cat-img" src="${esc(c.img)}" alt="" loading="lazy">` : `<span aria-hidden="true">${c.emoji}</span>`;
+      const sub = c.sub ? `<p class="sub">${esc(c.sub)}</p>` : "";
+      return `<section${c.destaque ? ' class="destaque"' : ""} aria-label="${esc(c.nome)}"><h2>${icone}${esc(c.nome)}</h2>${sub}` +
+        itens.map(i => `
+        <article class="item">
+          ${i.img ? `<img class="thumb" src="${esc(i.img)}" alt="" width="72" height="72" loading="lazy">` : `<div class="thumb" aria-hidden="true">${i.emoji}</div>`}
+          <div class="body">
+            <h3>${esc(i.nome)}</h3>
+            <p>${esc(i.desc)}</p>
+            <div class="row">
+              <span class="price">${i.aPartir ? "a partir de " : ""}${brl(i.preco)}</span>
+              <a class="btn btn-order" target="_blank" rel="noopener" aria-label="Pedir ${esc(i.nome)} no WhatsApp"
+                 href="${wa(CARDAPIO.msgItem.replace("{item}", i.nome).replace("{preco}", (i.aPartir ? "a partir de " : "") + brl(i.preco)))}">Pedir</a>
+            </div>
+          </div>
+        </article>`).join("") + `</section>`;
+    }).join("");
+  $("menu").innerHTML = html || `<p class="empty">Nenhum item encontrado para "${esc(termo)}".</p>`;
+}
+
+$("tabs").addEventListener("click", e => {
+  const b = e.target.closest(".tab");
+  if (!b) return;
+  cat = b.dataset.cat;
+  renderTabs();
+  renderMenu();
+});
+$("busca").addEventListener("input", e => { termo = e.target.value; renderMenu(); });
+
+renderTopo(); renderTabs(); renderMenu();
+</script>
+</body>
+</html>
