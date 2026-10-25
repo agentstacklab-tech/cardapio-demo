@@ -5,72 +5,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sabor da Esquina – Cardápio Digital</title>
 <meta name="description" content="Cardápio digital do Sabor da Esquina. Peça pelo WhatsApp.">
-<meta name="theme-color" content="#c2410c">
+<meta name="theme-color" content="#b42318">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --primary:#c2410c; --on-primary:#fff; --bg:#fff8f1; --card:#fff; --text:#2b1d14;
-  --muted:#6b5a4e; --line:#ecdccf; --chip:#fde6d4; --wa:#0a7a43; --on-wa:#fff;
-  --radius:16px; --shadow:0 2px 10px rgba(80,40,10,.08);
+  --primary:#b42318; --on-primary:#fff; --bg:#fbf6ec; --card:#fffdf8; --text:#2a1710;
+  --muted:#6a5648; --line:#e6d8c3; --chip:#f1e4cd; --stripe:#f2b134; --wa:#25D366; --on-wa:#06220f;
+  --radius:18px; --shadow:0 1px 0 rgba(42,23,16,.06),0 8px 20px -12px rgba(42,23,16,.25);
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --primary:#fb923c; --on-primary:#1c1008; --bg:#16110d; --card:#221a14; --text:#f6ece4;
-    --muted:#b9a698; --line:#3a2d24; --chip:#3a2515; --wa:#25c26e; --on-wa:#06220f;
-    --shadow:0 2px 10px rgba(0,0,0,.4);
+    --primary:#ff8f78; --on-primary:#2a0d08; --bg:#17110e; --card:#211914; --text:#f7ede2;
+    --muted:#bba99a; --line:#3b2e25; --chip:#2e231b; --stripe:#e0a02a;
+    --shadow:0 8px 20px -12px rgba(0,0,0,.7);
   }
 }
 *{box-sizing:border-box;margin:0}
-body{font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.45;-webkit-text-size-adjust:100%}
+body{font-family:'Bricolage Grotesque',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.45;-webkit-text-size-adjust:100%}
 .wrap{max-width:720px;margin:0 auto;padding:0 16px}
-header{background:var(--primary);color:var(--on-primary);padding:28px 0 22px;border-radius:0 0 28px 28px}
-header h1{font-size:1.7rem;font-weight:700;letter-spacing:-.5px}
-header .logo{font-size:2.2rem;line-height:1}
-header p{font-size:.9rem;opacity:.95;margin-top:4px}
-.info{display:flex;flex-direction:column;gap:2px;margin:10px 0 16px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;min-width:44px;padding:0 18px;border:0;border-radius:999px;font:600 .95rem 'Poppins',sans-serif;cursor:pointer;text-decoration:none;transition:transform .1s,filter .15s}
+.toldo{height:16px;background:repeating-linear-gradient(90deg,var(--primary) 0 28px,var(--stripe) 28px 56px)}
+header{padding:22px 0 20px}
+.brand{display:flex;align-items:center;gap:14px}
+header .logo{flex:none;width:64px;height:64px;border-radius:50%;background:var(--primary);display:grid;place-items:center;font-size:2rem;line-height:1;box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--primary)}
+header h1{font-size:2.1rem;font-weight:800;letter-spacing:-.03em;line-height:1}
+header p{font-size:1rem;color:var(--muted);margin-top:14px;max-width:34ch}
+.info{display:flex;flex-direction:column;gap:2px;margin:16px 0;padding:10px 0;border-block:1px dashed var(--line);font-size:.9rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;min-width:44px;padding:0 18px;border:0;border-radius:999px;font:600 .95rem 'Bricolage Grotesque',sans-serif;cursor:pointer;text-decoration:none;transition:transform .1s,filter .15s}
 .btn:active{transform:scale(.97)}
-.btn:hover{filter:brightness(1.08)}
+.btn:hover{filter:brightness(1.06)}
 .btn:focus-visible,.tab:focus-visible,input:focus-visible{outline:3px solid var(--text);outline-offset:2px}
+.btn svg{width:20px;height:20px;fill:currentColor;flex:none}
 .btn-wa{background:var(--wa);color:var(--on-wa)}
-header .btn-wa{box-shadow:0 2px 0 rgba(0,0,0,.25)}
-.btn-order{background:var(--primary);color:var(--on-primary);padding:0 16px;min-height:44px}
-.tools{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 8px}
-.search{width:100%;min-height:48px;padding:0 16px;border:2px solid var(--line);border-radius:999px;background:var(--card);color:var(--text);font:400 1rem 'Poppins',sans-serif}
+.btn-order{background:var(--text);color:var(--bg)}
+.tools{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 0;border-bottom:1px solid var(--line)}
+.search{width:100%;min-height:48px;padding:0 18px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);font:400 1rem 'Bricolage Grotesque',sans-serif}
 .search:focus{border-color:var(--primary)}
-.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:8px 0 0;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex:none;min-height:44px;padding:0 16px;border:2px solid transparent;border-radius:999px;background:var(--chip);color:var(--text);font:500 .92rem 'Poppins',sans-serif;cursor:pointer}
-.tab[aria-selected="true"]{background:var(--primary);color:var(--on-primary);font-weight:600}
+.tab{flex:none;min-height:44px;padding:0 14px;border:0;border-bottom:3px solid transparent;background:none;color:var(--muted);font:500 .95rem 'Bricolage Grotesque',sans-serif;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--primary);border-bottom-color:var(--primary);font-weight:800}
 main{padding-bottom:40px}
-section h2{font-size:1.2rem;margin:22px 0 10px;display:flex;align-items:center;gap:8px}
-.item{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:12px;box-shadow:var(--shadow)}
-.thumb{flex:none;width:68px;height:68px;border-radius:14px;background:var(--chip);display:grid;place-items:center;font-size:2.1rem}
+section{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:4px 16px;box-shadow:var(--shadow)}
+section h2{font-size:1.35rem;font-weight:800;letter-spacing:-.02em;padding:14px 0 6px;display:flex;align-items:center;gap:8px}
+.item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px dashed var(--line)}
+section h2+.item{border-top:0}
+.thumb{flex:none;width:56px;height:56px;border-radius:12px;background:var(--chip);display:grid;place-items:center;font-size:1.6rem}
 .body{flex:1;min-width:0}
-.body h3{font-size:1rem;font-weight:600}
-.body p{font-size:.85rem;color:var(--muted);margin:2px 0 8px}
+.body h3{font-size:1.05rem;font-weight:600;line-height:1.25}
+.body p{font-size:.88rem;color:var(--muted);margin:2px 0 10px;max-width:46ch}
 .row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.price{font-weight:700;font-size:1.05rem;color:var(--primary)}
+.price{font-weight:800;font-size:1.3rem;letter-spacing:-.02em;color:var(--primary);font-variant-numeric:tabular-nums}
 .empty{text-align:center;color:var(--muted);padding:40px 0}
 footer{text-align:center;font-size:.8rem;color:var(--muted);padding:22px 16px 90px}
-.fab{position:fixed;right:16px;bottom:16px;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:9}
+.fab{position:fixed;right:16px;bottom:16px;box-shadow:0 6px 18px rgba(0,0,0,.3);z-index:9;min-height:52px;padding:0 20px}
 @media (min-width:600px){.info{flex-direction:row;gap:18px;flex-wrap:wrap}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
+<div class="toldo" aria-hidden="true"></div>
 <header>
   <div class="wrap">
-    <div class="logo" aria-hidden="true" id="logo"></div>
-    <h1 id="nome"></h1>
+    <div class="brand">
+      <div class="logo" aria-hidden="true" id="logo"></div>
+      <h1 id="nome"></h1>
+    </div>
     <p id="slogan"></p>
     <div class="info">
       <span id="horario"></span>
       <span id="endereco"></span>
     </div>
-    <a class="btn btn-wa" id="waTopo" target="_blank" rel="noopener" aria-label="Pedir no WhatsApp">Pedir no WhatsApp</a>
+    <a class="btn btn-wa" id="waTopo" target="_blank" rel="noopener" aria-label="Pedir no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm4.800 13.600c-.2.600-1.200 1.100-1.700 1.100-.5.100-1 .2-3.200-.7-2.700-1.100-4.400-3.800-4.500-4-.1-.2-1-1.400-1-2.700s.7-1.900.9-2.200c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 1.900c.1.200.1.300 0 .5l-.4.600c-.1.100-.3.300-.1.600.2.300.8 1.200 1.600 2 1 .9 2 1.200 2.300 1.300.3.100.5.100.6-.1l.9-1c.2-.3.400-.2.600-.1l1.800.9c.3.100.4.200.5.300.1.200.1.700-.1 1.300z"/></svg>Pedir no WhatsApp</a>
   </div>
 </header>
 
@@ -83,7 +90,7 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);padding:22px 16px 90
 </div>
 
 <footer id="rodape"></footer>
-<a class="btn btn-wa fab" id="waFab" target="_blank" rel="noopener" aria-label="Falar com o restaurante no WhatsApp">💬 WhatsApp</a>
+<a class="btn btn-wa fab" id="waFab" target="_blank" rel="noopener" aria-label="Falar com o restaurante no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm4.800 13.600c-.2.600-1.200 1.100-1.700 1.100-.5.100-1 .2-3.200-.7-2.700-1.100-4.400-3.800-4.500-4-.1-.2-1-1.400-1-2.700s.7-1.900.9-2.200c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 1.900c.1.200.1.300 0 .5l-.4.600c-.1.100-.3.300-.1.600.2.300.8 1.200 1.600 2 1 .9 2 1.200 2.300 1.300.3.100.5.100.6-.1l.9-1c.2-.3.400-.2.600-.1l1.800.9c.3.100.4.200.5.300.1.200.1.700-.1 1.300z"/></svg>WhatsApp</a>
 
 <script>
 // ===== EDITE AQUI: todo o conteúdo do cliente =====
