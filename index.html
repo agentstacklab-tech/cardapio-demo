@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sabor da Esquina – Cardápio Digital</title>
+<meta name="description" content="Cardápio digital do Sabor da Esquina. Peça pelo WhatsApp.">
+<meta name="theme-color" content="#c2410c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#c2410c; --on-primary:#fff; --bg:#fff8f1; --card:#fff; --text:#2b1d14;
+  --muted:#6b5a4e; --line:#ecdccf; --chip:#fde6d4; --wa:#0a7a43; --on-wa:#fff;
+  --radius:16px; --shadow:0 2px 10px rgba(80,40,10,.08);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --primary:#fb923c; --on-primary:#1c1008; --bg:#16110d; --card:#221a14; --text:#f6ece4;
+    --muted:#b9a698; --line:#3a2d24; --chip:#3a2515; --wa:#25c26e; --on-wa:#06220f;
+    --shadow:0 2px 10px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.45;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{background:var(--primary);color:var(--on-primary);padding:28px 0 22px;border-radius:0 0 28px 28px}
+header h1{font-size:1.7rem;font-weight:700;letter-spacing:-.5px}
+header .logo{font-size:2.2rem;line-height:1}
+header p{font-size:.9rem;opacity:.95;margin-top:4px}
+.info{display:flex;flex-direction:column;gap:2px;margin:10px 0 16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;min-width:44px;padding:0 18px;border:0;border-radius:999px;font:600 .95rem 'Poppins',sans-serif;cursor:pointer;text-decoration:none;transition:transform .1s,filter .15s}
+.btn:active{transform:scale(.97)}
+.btn:hover{filter:brightness(1.08)}
+.btn:focus-visible,.tab:focus-visible,input:focus-visible{outline:3px solid var(--text);outline-offset:2px}
+.btn-wa{background:var(--wa);color:var(--on-wa)}
+header .btn-wa{box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.btn-order{background:var(--primary);color:var(--on-primary);padding:0 16px;min-height:44px}
+.tools{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 8px}
+.search{width:100%;min-height:48px;padding:0 16px;border:2px solid var(--line);border-radius:999px;background:var(--card);color:var(--text);font:400 1rem 'Poppins',sans-serif}
+.search:focus{border-color:var(--primary)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;min-height:44px;padding:0 16px;border:2px solid transparent;border-radius:999px;background:var(--chip);color:var(--text);font:500 .92rem 'Poppins',sans-serif;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--primary);color:var(--on-primary);font-weight:600}
+main{padding-bottom:40px}
+section h2{font-size:1.2rem;margin:22px 0 10px;display:flex;align-items:center;gap:8px}
+.item{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:12px;box-shadow:var(--shadow)}
+.thumb{flex:none;width:68px;height:68px;border-radius:14px;background:var(--chip);display:grid;place-items:center;font-size:2.1rem}
+.body{flex:1;min-width:0}
+.body h3{font-size:1rem;font-weight:600}
+.body p{font-size:.85rem;color:var(--muted);margin:2px 0 8px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.price{font-weight:700;font-size:1.05rem;color:var(--primary)}
+.empty{text-align:center;color:var(--muted);padding:40px 0}
+footer{text-align:center;font-size:.8rem;color:var(--muted);padding:22px 16px 90px}
+.fab{position:fixed;right:16px;bottom:16px;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:9}
+@media (min-width:600px){.info{flex-direction:row;gap:18px;flex-wrap:wrap}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="logo" aria-hidden="true" id="logo"></div>
+    <h1 id="nome"></h1>
+    <p id="slogan"></p>
+    <div class="info">
+      <span id="horario"></span>
+      <span id="endereco"></span>
+    </div>
+    <a class="btn btn-wa" id="waTopo" target="_blank" rel="noopener" aria-label="Pedir no WhatsApp">Pedir no WhatsApp</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="tools">
+    <input class="search" id="busca" type="search" placeholder="Buscar no cardápio..." aria-label="Buscar item no cardápio" autocomplete="off">
+    <div class="tabs" id="tabs" role="tablist" aria-label="Categorias"></div>
+  </div>
+  <main id="menu" aria-live="polite"></main>
+</div>
+
+<footer id="rodape"></footer>
+<a class="btn btn-wa fab" id="waFab" target="_blank" rel="noopener" aria-label="Falar com o restaurante no WhatsApp">💬 WhatsApp</a>
+
+<script>
+// ===== EDITE AQUI: todo o conteúdo do cliente =====
+const CARDAPIO = {
+  nome: "Sabor da Esquina",
+  logo: "🍔",
+  slogan: "Lanches e porções feitos na hora, do jeito que você gosta.",
+  horario: "🕒 Ter a Dom, 11h às 23h",
+  endereco: "📍 Rua das Flores, 123 – Centro",
+  whatsapp: "5547997143462", // DDI + DDD + número, só dígitos
+  msgGeral: "Olá! Vi o cardápio digital e gostaria de fazer um pedido.",
+  msgItem: "Olá! Quero pedir: {item} ({preco}).",
+  rodape: "Cardápio digital por Marco · (47) 99714-3462",
+  categorias: [
+    { nome: "Lanches", emoji: "🍔", itens: [
+      { nome: "X-Burger", preco: 22.9, emoji: "🍔", desc: "Pão brioche, hambúrguer 150g, queijo e molho da casa." },
+      { nome: "X-Bacon", preco: 27.9, emoji: "🥓", desc: "Hambúrguer 150g, bacon crocante, queijo cheddar e cebola." },
+      { nome: "X-Frango", preco: 24.9, emoji: "🐔", desc: "Filé de frango grelhado, queijo, alface e tomate." },
+      { nome: "Hot Dog Completo", preco: 16.5, emoji: "🌭", desc: "Duas salsichas, purê, batata palha, milho e vinagrete." }
+    ]},
+    { nome: "Porções", emoji: "🍟", itens: [
+      { nome: "Batata Frita", preco: 24.0, emoji: "🍟", desc: "Porção crocante para 2 pessoas, com sal e orégano." },
+      { nome: "Calabresa Acebolada", preco: 32.0, emoji: "🌭", desc: "Calabresa fatiada com cebola dourada e pão." },
+      { nome: "Isca de Frango", preco: 34.0, emoji: "🍗", desc: "Iscas empanadas com molho barbecue." },
+      { nome: "Mandioca Frita", preco: 26.0, emoji: "🥔", desc: "Mandioca macia por dentro, sequinha por fora." }
+    ]},
+    { nome: "Bebidas", emoji: "🥤", itens: [
+      { nome: "Refrigerante Lata", preco: 6.5, emoji: "🥤", desc: "Coca-Cola, Guaraná ou Fanta, 350ml, gelada." },
+      { nome: "Suco Natural", preco: 10.0, emoji: "🍊", desc: "Laranja, limão ou maracujá, 400ml." },
+      { nome: "Água Mineral", preco: 4.0, emoji: "💧", desc: "Com ou sem gás, 500ml." },
+      { nome: "Milkshake", preco: 18.0, emoji: "🥛", desc: "Chocolate, morango ou baunilha, 400ml." }
+    ]},
+    { nome: "Sobremesas", emoji: "🍰", itens: [
+      { nome: "Pudim de Leite", preco: 12.0, emoji: "🍮", desc: "Fatia generosa com calda de caramelo." },
+      { nome: "Brownie com Sorvete", preco: 19.0, emoji: "🍫", desc: "Brownie quente, sorvete de creme e calda de chocolate." },
+      { nome: "Mousse de Maracujá", preco: 11.0, emoji: "🍈", desc: "Cremoso e na medida certa de azedinho." }
+    ]}
+  ]
+};
+// ===== fim da área editável =====
+
+const $ = id => document.getElementById(id);
+const brl = n => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+const wa = txt => `https://wa.me/${CARDAPIO.whatsapp}?text=${encodeURIComponent(txt)}`;
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+const esc = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+let cat = "Todos", termo = "";
+
+function renderTopo() {
+  document.title = `${CARDAPIO.nome} – Cardápio Digital`;
+  $("logo").textContent = CARDAPIO.logo;
+  $("nome").textContent = CARDAPIO.nome;
+  $("slogan").textContent = CARDAPIO.slogan;
+  $("horario").textContent = CARDAPIO.horario;
+  $("endereco").textContent = CARDAPIO.endereco;
+  $("waTopo").href = $("waFab").href = wa(CARDAPIO.msgGeral);
+  $("rodape").textContent = `${CARDAPIO.rodape} · ${CARDAPIO.nome} © ${new Date().getFullYear()}`;
+}
+
+function renderTabs() {
+  const nomes = ["Todos", ...CARDAPIO.categorias.map(c => c.nome)];
+  $("tabs").innerHTML = nomes.map(n =>
+    `<button class="tab" role="tab" aria-selected="${n === cat}" data-cat="${esc(n)}">${esc(n)}</button>`).join("");
+}
+
+function renderMenu() {
+  const q = norm(termo.trim());
+  const html = CARDAPIO.categorias
+    .filter(c => cat === "Todos" || c.nome === cat)
+    .map(c => {
+      const itens = c.itens.filter(i => norm(i.nome).includes(q));
+      if (!itens.length) return "";
+      return `<section aria-label="${esc(c.nome)}"><h2><span aria-hidden="true">${c.emoji}</span>${esc(c.nome)}</h2>` +
+        itens.map(i => `
+        <article class="item">
+          <div class="thumb" aria-hidden="true">${i.emoji}</div>
+          <div class="body">
+            <h3>${esc(i.nome)}</h3>
+            <p>${esc(i.desc)}</p>
+            <div class="row">
+              <span class="price">${brl(i.preco)}</span>
+              <a class="btn btn-order" target="_blank" rel="noopener" aria-label="Pedir ${esc(i.nome)} no WhatsApp"
+                 href="${wa(CARDAPIO.msgItem.replace("{item}", i.nome).replace("{preco}", brl(i.preco)))}">Pedir</a>
+            </div>
+          </div>
+        </article>`).join("") + `</section>`;
+    }).join("");
+  $("menu").innerHTML = html || `<p class="empty">Nenhum item encontrado para "${esc(termo)}".</p>`;
+}
+
+$("tabs").addEventListener("click", e => {
+  const b = e.target.closest(".tab");
+  if (!b) return;
+  cat = b.dataset.cat;
+  renderTabs();
+  renderMenu();
+});
+$("busca").addEventListener("input", e => { termo = e.target.value; renderMenu(); });
+
+renderTopo(); renderTabs(); renderMenu();
+</script>
+</body>
+</html>
