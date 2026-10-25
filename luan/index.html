@@ -11,8 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --primary:#8B3A0F; --on-primary:#fff; --bg:#fbf6ec; --card:#fffdf8; --text:#2a1710;
-  --muted:#6a5648; --line:#e6d8c3; --chip:#f1e4cd; --stripe:#e8892b; --wa:#25D366; --on-wa:#06220f;
+  --primary:#D11A1A; --on-primary:#fff; --bg:#fbf6ec; --card:#fffdf8; --text:#2a1710;
+  --muted:#6a5648; --line:#e6d8c3; --chip:#f1e4cd; --stripe:#1F3A8A; --wa:#25D366; --on-wa:#06220f;
   --radius:18px; --shadow:0 1px 0 rgba(42,23,16,.06),0 8px 20px -12px rgba(42,23,16,.25);
 }
 @media (prefers-color-scheme:dark){
@@ -29,6 +29,7 @@ body{font-family:'Bricolage Grotesque',system-ui,sans-serif;background:var(--bg)
 header{padding:22px 0 20px}
 .brand{display:flex;align-items:center;gap:14px}
 header .logo{flex:none;width:64px;height:64px;border-radius:50%;background:var(--primary);display:grid;place-items:center;font-size:2rem;line-height:1;box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--primary)}
+header .logo img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
 header h1{font-size:2.1rem;font-weight:800;letter-spacing:-.03em;line-height:1}
 header p{font-size:1rem;color:var(--muted);margin-top:14px;max-width:34ch}
 .info{display:flex;flex-direction:column;gap:2px;margin:16px 0;padding:10px 0;border-block:1px dashed var(--line);font-size:.9rem}
@@ -112,6 +113,7 @@ footer{text-align:center;font-size:.8rem;color:var(--muted);padding:22px 16px 90
 const CARDAPIO = {
   nome: "Luan Assados & Marmitex",
   logo: "🍗",
+  logoImg: "img/logo.jpg",
   slogan: "Assados de fim de semana e marmita de segunda a sábado",
   horario: "🕒 Seg a Sáb · Delivery e retirada no balcão",
   endereco: "📍 Rua Pedro Cristiano de Miranda, 1276 – Itajaí/SC (esquina com a agropecuária Girardi)",
@@ -161,7 +163,7 @@ let cat = "Todos", termo = "";
 
 function renderTopo() {
   document.title = "Luan Assados & Marmitex – Cardápio";
-  $("logo").textContent = CARDAPIO.logo;
+  if (CARDAPIO.logoImg) { $("logo").innerHTML = "<img src=\"" + CARDAPIO.logoImg + "\" alt=\"\">"; } else { $("logo").textContent = CARDAPIO.logo; }
   $("nome").textContent = CARDAPIO.nome;
   $("slogan").textContent = CARDAPIO.slogan;
   $("horario").textContent = CARDAPIO.horario;
